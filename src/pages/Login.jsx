@@ -13,6 +13,7 @@ function Login() {
       email: email.value,
     };
     dispatch(login(userData));
+    e.currentTarget.reset();
   };
 
   return (
