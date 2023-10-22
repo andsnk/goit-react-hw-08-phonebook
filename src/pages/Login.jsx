@@ -1,6 +1,8 @@
+import { Button, TextField, Box } from '@mui/material';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from 'redux/auth/operation';
+// import { Button } from '@mui/material';
 
 function Login() {
   const dispatch = useDispatch();
@@ -13,21 +15,41 @@ function Login() {
       email: email.value,
     };
     dispatch(login(userData));
-    e.currentTarget.reset();
   };
 
   return (
-    <form onSubmit={handleSubmit} autoComplete="off">
-      <label>
-        Email
-        <input type="email" name="email" />
-      </label>
-      <label>
-        Password
-        <input type="password" name="password" />
-      </label>
-      <button type="submit">Log In</button>
-    </form>
+    <div className="container">
+      {/* <form onSubmit={handleSubmit} autoComplete="off"> */}
+      <Box
+        onSubmit={handleSubmit}
+        component="form"
+        sx={{
+          '& > :not(style)': { m: 1, width: '25ch' },
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+        autoComplete="off"
+      >
+        <TextField
+          type="email"
+          name="email"
+          id="filled-basic"
+          label="Email"
+          variant="standard"
+        />
+        <TextField
+          type="password"
+          name="password"
+          id="standard-basic"
+          label="Password"
+          variant="standard"
+        />
+        <Button variant="contained" type="submit">
+          Log In
+        </Button>
+      </Box>
+      {/* </form> */}
+    </div>
   );
 }
 export default Login;

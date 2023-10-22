@@ -1,16 +1,11 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { registration } from 'redux/auth/operation';
+import { Button, TextField, Box } from '@mui/material';
+// import css from './Register.module.css';
 
 function Register() {
   const dispatch = useDispatch();
-  //   dispach(
-  //     registration({
-  //       name: 'dsfs',
-  //       email: 'dfseeeefd@msdkf.com',
-  //       password: 'ddkkkccGGjsss11',
-  //     })
-  //   );
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -24,13 +19,42 @@ function Register() {
     dispatch(registration(userData));
   };
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="name" placeholder="name" />
-        <input type="email" name="email" placeholder="email" />
-        <input type="password" name="password" placeholder="password" />
-        <button type="submit">Register</button>
-      </form>
+    <div className="container">
+      <Box
+        onSubmit={handleSubmit}
+        component="form"
+        sx={{
+          '& > :not(style)': { m: 1, width: '25ch' },
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+        autoComplete="off"
+      >
+        <TextField
+          type="text"
+          name="name"
+          id="outlined-basic"
+          label="Name"
+          variant="standard"
+        />
+        <TextField
+          type="email"
+          name="email"
+          id="filled-basic"
+          label="Email"
+          variant="standard"
+        />
+        <TextField
+          type="password"
+          name="password"
+          id="standard-basic"
+          label="Password"
+          variant="standard"
+        />
+        <Button variant="contained" type="submit">
+          Register
+        </Button>
+      </Box>
     </div>
   );
 }

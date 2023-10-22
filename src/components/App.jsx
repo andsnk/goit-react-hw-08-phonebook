@@ -10,17 +10,19 @@ import { refreshUser } from 'redux/auth/operation';
 import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
 import { selectIsRefreshing } from 'redux/auth/selectors';
+import { selectIsLoading } from 'redux/selectors';
 
 const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
+  const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
     dispatch(refreshUser());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return isRefreshing ? (
+  return isRefreshing && isLoading ? (
     <p>Loading</p>
   ) : (
     <Routes>
