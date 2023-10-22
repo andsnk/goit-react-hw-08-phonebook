@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getContactsApi, addContactApi, deleteContactApi } from 'api/api';
 import Notiflix from 'notiflix';
+import { setAuthHeader } from './auth/operation';
 Notiflix.Notify.init({
   width: '280px',
   position: 'top',
@@ -10,8 +11,10 @@ Notiflix.Notify.init({
 
 export const fetchAllContacts = createAsyncThunk(
   'contacts/fetchAll',
-  async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue, getState }) => {
     try {
+      const token = getState().auth.token;
+      setAuthHeader(token);
       const data = await getContactsApi();
       Notiflix.Notify.info(`You have ${data.length} contacts`);
       return data;

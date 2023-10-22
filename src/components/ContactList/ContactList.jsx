@@ -9,7 +9,7 @@ import {
   selectError,
 } from 'redux/selectors';
 
-const Contacts = () => {
+const ContactsList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
   const isLoading = useSelector(selectIsLoading);
@@ -47,4 +47,4 @@ const Contacts = () => {
   );
 };
 
-export default Contacts;
+export default ContactsList;
