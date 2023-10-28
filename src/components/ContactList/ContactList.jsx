@@ -22,6 +22,7 @@ import {
 // import FolderIcon from '@mui/icons-material/Folder';
 
 import DeleteIcon from '@mui/icons-material/Delete';
+import toast from 'react-hot-toast';
 // import { red } from '@mui/material/colors';
 
 const ContactsList = () => {
@@ -69,7 +70,16 @@ const ContactsList = () => {
                   <IconButton
                     edge="end"
                     aria-label="delete"
-                    onClick={() => dispatch(deleteContact(contact.id))}
+                    onClick={() =>
+                      dispatch(deleteContact(contact.id))
+                        .unwrap()
+                        .then(() =>
+                          toast.success(
+                            `Contact ${contact.name} has been deleted.`
+                          )
+                        )
+                        .catch(() => toast.error('Error'))
+                    }
                   >
                     <DeleteIcon />
                   </IconButton>

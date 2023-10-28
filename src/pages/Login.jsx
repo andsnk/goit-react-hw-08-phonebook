@@ -2,12 +2,12 @@ import { Button, TextField, Box } from '@mui/material';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from 'redux/auth/operation';
-// import { Button } from '@mui/material';
 import Input from '@mui/material/Input';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import toast from 'react-hot-toast';
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -26,12 +26,14 @@ function Login() {
       password: password.value,
       email: email.value,
     };
-    dispatch(login(userData));
+    dispatch(login(userData))
+      .unwrap()
+      .then(() => toast.success('Welcome'))
+      .catch(() => toast.error('Login failed. Please check your credentials.'));
   };
 
   return (
     <div className="container">
-      {/* <form onSubmit={handleSubmit} autoComplete="off"> */}
       <Box
         onSubmit={handleSubmit}
         component="form"
@@ -66,18 +68,10 @@ function Login() {
             </InputAdornment>
           }
         />
-        {/* <TextField
-          type="password"
-          name="password"
-          id="standard-basic"
-          label="Password"
-          variant="standard"
-        /> */}
         <Button variant="contained" type="submit">
           Log In
         </Button>
       </Box>
-      {/* </form> */}
     </div>
   );
 }

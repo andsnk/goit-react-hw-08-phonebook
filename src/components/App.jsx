@@ -12,6 +12,7 @@ import { RestrictedRoute } from './RestrictedRoute';
 import { selectIsRefreshing } from 'redux/auth/selectors';
 import { selectIsLoading } from 'redux/selectors';
 import Loader from './Loader/Loader';
+import { Toaster } from 'react-hot-toast';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -26,38 +27,36 @@ const App = () => {
   return isRefreshing && isLoading ? (
     <Loader />
   ) : (
-    // <p>1</p>
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<HomePage />} />
-        <Route
-          path="/login"
-          element={
-            <RestrictedRoute redirectTo="/contacts" component={<Login />} />
-          }
-        />
-        <Route
-          path="/register"
-          element={
-            <RestrictedRoute redirectTo="/contacts" component={<Register />} />
-          }
-        />
-        <Route
-          path="/contacts"
-          element={
-            <PrivateRoute redirectTo="/login" component={<Contacts />} />
-          }
-        />
-      </Route>
-    </Routes>
+    <>
+      <Toaster />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute redirectTo="/contacts" component={<Login />} />
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute
+                redirectTo="/contacts"
+                component={<Register />}
+              />
+            }
+          />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute redirectTo="/login" component={<Contacts />} />
+            }
+          />
+        </Route>
+      </Routes>
+    </>
   );
-  // <div className="container">
-  //   <h1>Phonebook</h1>
-  //   <ContactForm />
-  //   <h2>Contacts</h2>
-  //   <Filter />
-  //   <ContactList />
-  // </div>
 };
 
 export default App;

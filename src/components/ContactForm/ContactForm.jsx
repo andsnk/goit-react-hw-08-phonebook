@@ -6,6 +6,7 @@ import { addContact } from 'redux/thunks';
 import { selectContacts } from 'redux/selectors';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import toast from 'react-hot-toast';
 Notiflix.Notify.init({
   width: '280px',
   position: 'top',
@@ -38,12 +39,15 @@ const ContactForm = () => {
       contact => contact.name.toLowerCase() === name.toLowerCase()
     );
     if (isDuplicate) {
-      Notiflix.Notify.failure(`${name} is already in your contacts.`);
+      toast.error(`${name} is already in your contacts.`);
       setName('');
       setNumber('');
       return;
     }
-    dispatch(addContact({ name, number }));
+    dispatch(addContact({ name, number }))
+      .unwrap()
+      .then(() => toast.success(`${name} added to your contacts.`))
+      .catch(() => toast.error('Error'));
     setName('');
     setNumber('');
   };

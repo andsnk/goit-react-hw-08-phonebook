@@ -8,6 +8,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import toast from 'react-hot-toast';
 
 function Register() {
   const [showPassword, setShowPassword] = useState(false);
@@ -28,7 +29,10 @@ function Register() {
       email: email.value,
     };
 
-    dispatch(registration(userData));
+    dispatch(registration(userData))
+      .unwrap()
+      .then(() => toast.success('Welcome'))
+      .catch(() => toast.error('Login failed. Please check your credentials.'));
   };
   return (
     <div className="container">
