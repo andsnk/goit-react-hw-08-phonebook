@@ -17,7 +17,7 @@ function Layout() {
       <header className={css.header}>
         <nav className={css.nav}>
           <div className={css.list}>
-            {' '}
+            {/* {' '} */}
             <NavLink className={css.link} to="/">
               Home
             </NavLink>
@@ -29,16 +29,16 @@ function Layout() {
           </div>
           <div className={css.list}>
             {isLoggedIn ? (
-              <p className={css.link}>Welcome, {user.name}</p>
+              <p className={css.text}>Welcome, {user.name}</p>
             ) : (
               <NavLink className={css.link} to="/register">
                 Register
               </NavLink>
             )}
             {isLoggedIn ? (
-              <Button onClick={() => dispatch(logout())} variant="contained">
-                LogOut
-              </Button>
+              <p className={css.link} onClick={() => dispatch(logout())}>
+                Log Out
+              </p>
             ) : (
               <NavLink className={css.link} to="/login">
                 LogIn

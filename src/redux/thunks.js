@@ -16,7 +16,7 @@ export const fetchAllContacts = createAsyncThunk(
       const token = getState().auth.token;
       setAuthHeader(token);
       const data = await getContactsApi();
-      Notiflix.Notify.info(`You have ${data.length} contacts`);
+      // Notiflix.Notify.info(`You have ${data.length} contacts`);
       return data;
     } catch (error) {
       Notiflix.Report.failure('Oops, something is wrong', error.message);

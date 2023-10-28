@@ -13,6 +13,7 @@
 
 body {
   background-color: #e7ecf2;
+  /* background-color: #101d24; */
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -55,4 +56,9 @@ ol {
   background-color: #ffffff;
   border-radius: 5px;
   box-shadow: var(--box-shadow);
+}
+
+.active {
+  color: #1976d2;
+  text-decoration: underline;
 }

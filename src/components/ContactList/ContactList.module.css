@@ -1,17 +1,17 @@
 .list {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  gap: 10px;
-  min-width: 420px;
-  opacity: 1;
-  transition: filter 250ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  gap: 10px; */
+  min-width: 440px;
+  /* opacity: 1;
+  transition: filter 250ms cubic-bezier(0.075, 0.82, 0.165, 1); */
 }
 
-.blurred {
+/* .blurred {
   pointer-events: none;
   filter: blur(1px);
   opacity: 0.6;
-}
+} */
 
 .list.blurred {
   transition: filter 250ms cubic-bezier(0.075, 0.82, 0.165, 1),

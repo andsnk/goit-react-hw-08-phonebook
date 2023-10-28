@@ -4,6 +4,8 @@ import Notiflix from 'notiflix';
 import css from './ContactForm.module.css';
 import { addContact } from 'redux/thunks';
 import { selectContacts } from 'redux/selectors';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 Notiflix.Notify.init({
   width: '280px',
   position: 'top',
@@ -49,7 +51,43 @@ const ContactForm = () => {
   return (
     <div>
       <form className={css.form} onSubmit={handleSubmit}>
-        <label className={css.label} htmlFor="name">
+        <TextField
+          onChange={handleChange}
+          id="name"
+          type="text"
+          name="name"
+          value={name}
+          inputProps={{
+            pattern:
+              "^[a-zA-Zа-яА-Я]+((['\\- ][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$",
+            title:
+              "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan",
+          }}
+          required
+          label="Name"
+          variant="standard"
+        />
+        <TextField
+          onChange={handleChange}
+          id="number"
+          type="tel"
+          name="number"
+          value={number}
+          inputProps={{
+            pattern:
+              '\\+?\\d{1,4}?[ .\\-\\s]?\\(?\\d{1,3}?\\)?[ .\\-\\s]?\\d{1,4}[ .\\-\\s]?\\d{1,4}[ .\\-\\s]?\\d{1,9}',
+            title:
+              'Phone number must consist of digits and can contain spaces, dashes, parentheses, and may start with +',
+          }}
+          required
+          label="Number"
+          variant="standard"
+        />
+
+        <Button sx={{ mt: '20px' }} type="submit" variant="contained">
+          Add contact
+        </Button>
+        {/* <label className={css.label} htmlFor="name">
           Name
         </label>
         <input
@@ -79,7 +117,7 @@ const ContactForm = () => {
         />
         <button className={css.addBtn} type="submit">
           Add contact
-        </button>
+        </button> */}
       </form>
     </div>
   );

@@ -11,6 +11,7 @@ import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
 import { selectIsRefreshing } from 'redux/auth/selectors';
 import { selectIsLoading } from 'redux/selectors';
+import Loader from './Loader/Loader';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -23,8 +24,9 @@ const App = () => {
   }, []);
 
   return isRefreshing && isLoading ? (
-    <p>Loading</p>
+    <Loader />
   ) : (
+    // <p>1</p>
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
