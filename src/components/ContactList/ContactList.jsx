@@ -8,7 +8,7 @@ import {
   selectFilteredContacts,
   // selectError,
 } from 'redux/selectors';
-import Typography from '@mui/material/Typography';
+// import Typography from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';
 import {
   List,
@@ -19,10 +19,10 @@ import {
   IconButton,
   Avatar,
 } from '@mui/material';
-import FolderIcon from '@mui/icons-material/Folder';
+// import FolderIcon from '@mui/icons-material/Folder';
 
 import DeleteIcon from '@mui/icons-material/Delete';
-import { red } from '@mui/material/colors';
+// import { red } from '@mui/material/colors';
 
 const ContactsList = () => {
   const dispatch = useDispatch();
