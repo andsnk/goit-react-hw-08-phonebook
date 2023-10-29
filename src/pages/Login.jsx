@@ -8,6 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import toast from 'react-hot-toast';
+import { NavLink } from 'react-router-dom';
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -41,6 +42,7 @@ function Login() {
           '& > :not(style)': { m: 1, width: '25ch' },
           display: 'flex',
           flexDirection: 'column',
+          alignItems: 'center',
         }}
         autoComplete="off"
       >
@@ -72,6 +74,9 @@ function Login() {
           Log In
         </Button>
       </Box>
+      <p>
+        Or <NavLink to="/register">Register</NavLink>
+      </p>
     </div>
   );
 }
